@@ -5,6 +5,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static org.junit.Assert.*;
+
 public class GestionDeSalleStepDefinitions {
 
     private Salle salle;
@@ -26,15 +28,12 @@ public class GestionDeSalleStepDefinitions {
     }
 
     @Then("{int} tables sont occupés")
-    public void tables_sont_occupés(Integer int1) {
-
-        throw new io.cucumber.java.PendingException();
+    public void tables_sont_occupés(int nombreDeTablesOccupees) {
+        assertEquals(nombreDeTablesOccupees, this.salle.nombreTableOccupee());
     }
 
     @Then("le nombre de tables disponible restante est {int}")
-    public void le_nombre_de_tables_disponible_restante_est(Integer int1) {
-        throw new io.cucumber.java.PendingException();
+    public void le_nombre_de_tables_disponible_restante_est(int nombreTablePrete) {
+        assertEquals(nombreTablePrete, this.salle.nombreTablePrete());
     }
-
-
 }
