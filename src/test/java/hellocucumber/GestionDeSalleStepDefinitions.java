@@ -24,7 +24,7 @@ public class GestionDeSalleStepDefinitions {
 
     @When("j'affecte des tables")
     public void j_affecte_des_tables() {
-        this.salle.affecter(this.nombreDeConvices);
+        this.salle = new Application().affecter(salle, nombreDeConvices);
     }
 
     @Then("{int} tables sont occupés")
