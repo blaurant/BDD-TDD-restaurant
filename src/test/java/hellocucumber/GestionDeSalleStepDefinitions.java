@@ -5,8 +5,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.junit.Assert.*;
-
 public class GestionDeSalleStepDefinitions {
 
     private Salle salle;
@@ -24,7 +22,7 @@ public class GestionDeSalleStepDefinitions {
 
     @When("j'affecte des tables")
     public void j_affecte_des_tables() {
-        //this.salle.affecter(this.nombreDeConvices);
+        this.salle.affecter(this.nombreDeConvices);
     }
 
     @Then("{int} tables sont occupés")
