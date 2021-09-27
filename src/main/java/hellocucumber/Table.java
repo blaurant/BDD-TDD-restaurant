@@ -13,11 +13,10 @@ public class Table {
                 .map(tableNumber -> new Table(tableNumber)));
     }
 
-    public enum Status {PRETE, OCCUPEE, SALE}
-
+    public enum Status {PRETE, OCCUPEE, SALE;}
     public final int number;
-    private Status status;
 
+    private Status status;
     public Table(int number) {
         if (number < 1)
             throw new IllegalArgumentException("le numéro de la table ne peut pas être inférieur à 1");
@@ -33,8 +32,12 @@ public class Table {
         this.status = OCCUPEE;
     }
 
-    public void occuper() {
+    public void liberer() {
         this.status = SALE;
+    }
+
+    public void dreser() {
+        this.status = PRETE;
     }
 
     boolean isPrete() {
@@ -43,6 +46,10 @@ public class Table {
 
     boolean isOccupee() {
         return isStatus(OCCUPEE);
+    }
+
+    boolean isSale() {
+        return isStatus(SALE);
     }
 
     boolean isStatus(Status status) {

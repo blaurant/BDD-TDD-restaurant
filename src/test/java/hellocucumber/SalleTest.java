@@ -51,4 +51,13 @@ public class SalleTest {
         new Salle(5).affecter(5).liberer(20);
     }
 
+    @Test
+    public void dresserTest() {
+        assertThat(new Salle(5).affecter(1).liberer(1).dresser(1).nombreTablePrete()).isEqualTo(5);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void tropDresserTest() {
+        new Salle(5).affecter(5).liberer(5).dresser(20);
+    }
 }

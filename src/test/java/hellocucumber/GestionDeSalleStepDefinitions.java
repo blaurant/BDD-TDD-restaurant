@@ -27,9 +27,14 @@ public class GestionDeSalleStepDefinitions {
         this.salle = new Application().affecter(salle, nombreDeConvives);
     }
 
-    @When("je libère {int} convives")
-    public void je_libère_convives(Integer nombreDeConvives) {
-        this.salle = new Application().liberer(salle, nombreDeConvives);
+    @When("je libère les tables")
+    public void je_libère_les_tables() {
+        this.salle = new Application().liberer(salle, this.nombreDeConvives);
+    }
+
+    @When("je dresse les tables")
+    public void je_dresse_les_tables() {
+        this.salle = new Application().dresser(salle, this.nombreDeConvives);
     }
 
     @Then("le nombre de tables {string} est {int}")

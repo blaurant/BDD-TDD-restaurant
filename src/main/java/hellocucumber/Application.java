@@ -25,4 +25,11 @@ public class Application {
         if (object == null)
             throw new IllegalArgumentException(s);
     }
+
+    public Salle dresser(Salle salle, int nombreDeConvives) {
+        checkNotNull(salle, "Salle est nulle");
+        checkPositif(nombreDeConvives, "nombre de convives est < 0");
+        salle.dresser(nombreDeConvives);
+        return salle;
+    }
 }
