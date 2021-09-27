@@ -35,7 +35,20 @@ public class SalleTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void tropAaffecterTest() {
+    public void tropAffecterTest() {
         new Salle(5).affecter(11);
     }
+
+    @Test
+    public void libererTest() {
+        assertThat(new Salle(5).affecter(1).liberer(1).nombreTablePrete()).isEqualTo(4);
+        assertThat(new Salle(5).affecter(1).liberer(1).nombreTableOccupee()).isEqualTo(0);
+        assertThat(new Salle(5).affecter(1).liberer(1).nombreTableSale()).isEqualTo(1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void tropLibererTest() {
+        new Salle(5).affecter(5).liberer(20);
+    }
+
 }

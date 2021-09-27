@@ -36,5 +36,4 @@ public class GestionDeSalleStepDefinitions {
     public void le_nombre_de_tables_est(String status, int nombreDeTablesOccupees) {
         assertEquals(nombreDeTablesOccupees, this.salle.nombreTable(Table.Status.valueOf(status)));
     }
-
 }

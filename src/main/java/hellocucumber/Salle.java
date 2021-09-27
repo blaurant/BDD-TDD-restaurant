@@ -3,9 +3,7 @@ package hellocucumber;
 import hellocucumber.Table.Status;
 import io.vavr.collection.List;
 
-import java.util.Map;
-
-import static hellocucumber.Table.Status.OCCUPEE;
+import static hellocucumber.Table.Status.*;
 
 public class Salle {
 
@@ -28,10 +26,11 @@ public class Salle {
         return this;
     }
 
-    public void liberer(int nombreDeConvives) {
+    public Salle liberer(int nombreDeConvives) {
         if (!estCePossibleDeLiberer(nombreDeConvives))
             throw new IllegalArgumentException("Trop de convives à libérer");
         selectTableOccupees(nombreDeConvives).forEach(table -> table.occuper());
+        return this;
     }
 
     private List<Table> selectTableOccupees(int nombreDeConvives) {
@@ -54,16 +53,20 @@ public class Salle {
         return nombreDeConvives / 2 + nombreDeConvives % 2;
     }
 
-    int nombreTablePrete() {
-        return onlyPrete().length();
-    }
-
     private List<Table> onlyPrete() {
         return tables.filter(table -> table.isPrete());
     }
 
+    int nombreTablePrete() {
+        return nombreTable(PRETE);
+    }
+
     public int nombreTableOccupee() {
         return nombreTable(OCCUPEE);
+    }
+
+    public int nombreTableSale() {
+        return nombreTable(SALE);
     }
 
     private List<Table> onlyOccupee() {

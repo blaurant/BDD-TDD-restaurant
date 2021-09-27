@@ -45,10 +45,6 @@ public class Table {
         return isStatus(OCCUPEE);
     }
 
-    public boolean isSale() {
-        return isStatus(SALE);
-    }
-
     boolean isStatus(Status status) {
         return getStatus().equals(status);
     }
