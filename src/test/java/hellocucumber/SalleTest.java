@@ -23,9 +23,9 @@ public class SalleTest {
 
     @Test
     public void tablePreteTest() {
-        assertThat(new Salle(5).canHandle(9)).isTrue();
-        assertThat(new Salle(5).canHandle(10)).isTrue();
-        assertThat(new Salle(5).canHandle(11)).isFalse();
+        assertThat(new Salle(5).estCePossibleDoccupper(9)).isTrue();
+        assertThat(new Salle(5).estCePossibleDoccupper(10)).isTrue();
+        assertThat(new Salle(5).estCePossibleDoccupper(11)).isFalse();
     }
 
     @Test

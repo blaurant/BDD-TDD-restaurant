@@ -5,5 +5,14 @@ Feature: Gestion de salle
     Given une salle contenant 15 tables
     And 7 convives pour un repas
     When j'affecte des tables
-    Then 4 tables sont occupés
-    And le nombre de tables disponible restante est 11
+    Then le nombre de tables "OCCUPEE" est 4
+    And le nombre de tables "PRETE" est 11
+
+  Scenario: Liberation de table(s)
+    Given une salle contenant 15 tables
+    And 7 convives pour un repas
+    And j'affecte des tables
+    When je libère 7 convives
+    And le nombre de tables "PRETE" est 11
+    And le nombre de tables "OCCUPEE" est 0
+    And le nombre de tables "SALE" est 4

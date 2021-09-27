@@ -3,8 +3,7 @@ package hellocucumber;
 import io.vavr.collection.List;
 import io.vavr.collection.Stream;
 
-import static hellocucumber.Table.Status.OCCUPEE;
-import static hellocucumber.Table.Status.PRETE;
+import static hellocucumber.Table.Status.*;
 
 public class Table {
 
@@ -14,7 +13,7 @@ public class Table {
                 .map(tableNumber -> new Table(tableNumber)));
     }
 
-    public enum Status {PRETE, OCCUPEE, LIBRE}
+    public enum Status {PRETE, OCCUPEE, SALE}
 
     public final int number;
     private Status status;
@@ -34,12 +33,20 @@ public class Table {
         this.status = OCCUPEE;
     }
 
+    public void occuper() {
+        this.status = SALE;
+    }
+
     boolean isPrete() {
         return isStatus(PRETE);
     }
 
     boolean isOccupee() {
         return isStatus(OCCUPEE);
+    }
+
+    public boolean isSale() {
+        return isStatus(SALE);
     }
 
     boolean isStatus(Status status) {

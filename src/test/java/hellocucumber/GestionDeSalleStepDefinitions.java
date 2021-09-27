@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class GestionDeSalleStepDefinitions {
 
     private Salle salle;
-    private int nombreDeConvices;
+    private int nombreDeConvives;
 
     @Given("une salle contenant {int} tables")
     public void une_salle_contenant_tables(Integer nombreDeTablesDansLaSalle) {
@@ -19,21 +19,22 @@ public class GestionDeSalleStepDefinitions {
 
     @Given("{int} convives pour un repas")
     public void convives_pour_un_repas(Integer nombreDeConvices) {
-        this.nombreDeConvices = nombreDeConvices;
+        this.nombreDeConvives = nombreDeConvices;
     }
 
     @When("j'affecte des tables")
     public void j_affecte_des_tables() {
-        this.salle = new Application().affecter(salle, nombreDeConvices);
+        this.salle = new Application().affecter(salle, nombreDeConvives);
     }
 
-    @Then("{int} tables sont occupés")
-    public void tables_sont_occupés(int nombreDeTablesOccupees) {
-        assertEquals(nombreDeTablesOccupees, this.salle.nombreTableOccupee());
+    @When("je libère {int} convives")
+    public void je_libère_convives(Integer nombreDeConvives) {
+        this.salle = new Application().liberer(salle, nombreDeConvives);
     }
 
-    @Then("le nombre de tables disponible restante est {int}")
-    public void le_nombre_de_tables_disponible_restante_est(int nombreTablePrete) {
-        assertEquals(nombreTablePrete, this.salle.nombreTablePrete());
+    @Then("le nombre de tables {string} est {int}")
+    public void le_nombre_de_tables_est(String status, int nombreDeTablesOccupees) {
+        assertEquals(nombreDeTablesOccupees, this.salle.nombreTable(Table.Status.valueOf(status)));
     }
+
 }

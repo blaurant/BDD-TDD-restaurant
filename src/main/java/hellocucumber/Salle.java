@@ -1,6 +1,11 @@
 package hellocucumber;
 
+import hellocucumber.Table.Status;
 import io.vavr.collection.List;
+
+import java.util.Map;
+
+import static hellocucumber.Table.Status.OCCUPEE;
 
 public class Salle {
 
@@ -17,18 +22,32 @@ public class Salle {
     }
 
     public Salle affecter(int nombreDeConvives) {
-        if (!canHandle(nombreDeConvives))
+        if (!estCePossibleDoccupper(nombreDeConvives))
             throw new IllegalArgumentException("Trop de convives à affecter");
-        selectPreteTable(nombreDeConvives).forEach(table -> table.affecter());
+        selectTablePrete(nombreDeConvives).forEach(table -> table.affecter());
         return this;
     }
 
-    private List<Table> selectPreteTable(int nombreDeConvives) {
+    public void liberer(int nombreDeConvives) {
+        if (!estCePossibleDeLiberer(nombreDeConvives))
+            throw new IllegalArgumentException("Trop de convives à libérer");
+        selectTableOccupees(nombreDeConvives).forEach(table -> table.occuper());
+    }
+
+    private List<Table> selectTableOccupees(int nombreDeConvives) {
+        return onlyOccupee().dropRight(onlyOccupee().length() - nombreDeTables(nombreDeConvives));
+    }
+
+    private List<Table> selectTablePrete(int nombreDeConvives) {
         return onlyPrete().dropRight(onlyPrete().length() - nombreDeTables(nombreDeConvives));
     }
 
-    boolean canHandle(int nombreDeConvives) {
+    boolean estCePossibleDoccupper(int nombreDeConvives) {
         return nombreTablePrete() >= nombreDeTables(nombreDeConvives);
+    }
+
+    boolean estCePossibleDeLiberer(int nombreDeConvives) {
+        return nombreTableOccupee() >= nombreDeTables(nombreDeConvives);
     }
 
     private int nombreDeTables(int nombreDeConvives) {
@@ -44,10 +63,18 @@ public class Salle {
     }
 
     public int nombreTableOccupee() {
-        return onlyOccupee().length();
+        return nombreTable(OCCUPEE);
     }
 
     private List<Table> onlyOccupee() {
         return tables.filter(table -> table.isOccupee());
+    }
+
+    public int nombreTable(Status status) {
+        return only(status).length();
+    }
+
+    private List<Table> only(Status status) {
+        return tables.filter(table -> table.isStatus(status));
     }
 }
