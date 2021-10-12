@@ -1,9 +1,9 @@
-package hellocucumber;
+package hellocucumber.domaine;
 
 import io.vavr.collection.List;
 import io.vavr.collection.Stream;
 
-import static hellocucumber.Table.Status.*;
+import static hellocucumber.domaine.Table.Status.*;
 
 public class Table {
 

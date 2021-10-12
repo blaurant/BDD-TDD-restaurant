@@ -1,12 +1,9 @@
-package hellocucumber;
+package hellocucumber.domaine;
 
-import hellocucumber.Table.Status;
+import hellocucumber.domaine.Table.Status;
 import io.vavr.collection.List;
-import io.vavr.collection.Traversable;
 
-import java.util.Map;
-
-import static hellocucumber.Table.Status.*;
+import static hellocucumber.domaine.Table.Status.*;
 
 public class Salle {
 

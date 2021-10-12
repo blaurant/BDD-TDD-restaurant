@@ -1,6 +1,8 @@
-package hellocucumber;
+package hellocucumber.application;
 
-public class Application {
+import hellocucumber.domaine.Salle;
+
+public class GestionDeSalle {
 
     public Salle affecter (Salle salle, int nombreDeConvives) {
         checkNotNull(salle, "Salle est nulle");

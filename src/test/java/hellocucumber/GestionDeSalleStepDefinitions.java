@@ -1,6 +1,9 @@
 package hellocucumber;
 
 
+import hellocucumber.domaine.Salle;
+import hellocucumber.domaine.Table;
+import hellocucumber.application.GestionDeSalle;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -24,17 +27,17 @@ public class GestionDeSalleStepDefinitions {
 
     @When("j'affecte des tables")
     public void j_affecte_des_tables() {
-        this.salle = new Application().affecter(salle, nombreDeConvives);
+        this.salle = new GestionDeSalle().affecter(salle, nombreDeConvives);
     }
 
     @When("je libère les tables")
     public void je_libère_les_tables() {
-        this.salle = new Application().liberer(salle, this.nombreDeConvives);
+        this.salle = new GestionDeSalle().liberer(salle, this.nombreDeConvives);
     }
 
     @When("je dresse les tables")
     public void je_dresse_les_tables() {
-        this.salle = new Application().dresser(salle, this.nombreDeConvives);
+        this.salle = new GestionDeSalle().dresser(salle, this.nombreDeConvives);
     }
 
     @Then("le nombre de tables {string} est {int}")

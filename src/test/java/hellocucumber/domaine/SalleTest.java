@@ -1,5 +1,6 @@
-package hellocucumber;
+package hellocucumber.domaine;
 
+import hellocucumber.domaine.Salle;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
